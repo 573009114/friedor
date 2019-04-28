@@ -1,0 +1,49 @@
+{% load staticfiles %}
+{% include "backend/header.htm" %}
+<div class="main-wrap">
+   
+    {% include "backend/left-nav.htm" %} 
+	<div class="content-wrap">
+	    {% include "backend/top-header.htm" %} 
+		<main class="main-cont content mCustomScrollbar">
+		<div class="page-wrap">
+		
+		<section class="page-hd">
+			<header>
+				<h2 class="title"><i class="icon-home"></i>餐品记录</h2>
+				 
+			</header>
+			<hr>
+		</section>
+		
+		<table class="table table-bordered  mb-15 mt-15">
+		<thead>
+			<tr class="cen">
+			    <th>餐品名</th>
+				<th>单价</th>
+	 
+				<th>操作</th>
+				<th></th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="cen">
+			    <td><b class="text-warning">蛋炒饭</b></td>
+				<td><b>200</b></td>
+				<td><b>修改</b></td>
+				<td><b>删除</b></td>
+			</tr>
+			
+		</tbody>
+		</table>
+		<div class="lt clear">
+			<div class="fl">
+				<button class="btn btn-warning"><i class="icon-cog"></i>保存</button>
+				<button class="btn btn-danger"><i class="icon-trash"></i>取消</button>
+			</div>
+			<div class="pagination fr"></div>
+		</div> 
+	    </div>
+		</main>
+		{% include "backend/footer.htm" %}
