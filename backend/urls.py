@@ -23,6 +23,8 @@ urlpatterns = [
     # 会员管理路由
     url(r'^member/$',member.member_list,name='list'),
     url(r'^member/create',member.member_creat,name='creat'),
+    url(r'^member/edit',member.member_modify,name='edit'),
+    url(r'^member/delete',member.member_delete,name='delete'),
     # 收入路由
     url(r'^income/$',member.income,name='income'),
     url(r'^income/create',member.income_creat,name='incomecreat'),

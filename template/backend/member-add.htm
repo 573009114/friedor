@@ -20,26 +20,26 @@
 			<div class="form-group-col-2">
 				<div class="form-label">姓名：</div>
 				<div class="form-cont">
-					<input type="text" placeholder="100%输入框..." class="form-control form-boxed" >
+					<input type="text" name="name" placeholder="顾客姓名" class="form-control form-boxed" >
 				</div>
 			</div>
 			 <div class="form-group-col-2">
 				<div class="form-label">手机号码：</div>
 				<div class="form-cont">
-					<input type="tel" placeholder="手机号码..." class="form-control form-boxed" >
+					<input type="tel" name="tel"  maxlength="11" placeholder="顾客手机号" class="form-control form-boxed" >
 					 
 				</div>
 			</div>
 			<div class="form-group-col-2">
 				<div class="form-label">地址：</div>
 				<div class="form-cont">
-					<input type="text" placeholder="100%输入框..." class="form-control form-boxed"  >
+					<input type="text" name="address"  placeholder="顾客地址，没有可为空" class="form-control form-boxed"  >
 				</div>
 			</div>
 			 <div class="form-group-col-2">
 					<div class="form-label">会员号：</div>
-					<div class="form-cont">
-						<input type="text" placeholder="100%输入框..." class="form-control form-boxed">
+					<div class="form-cont"> 
+						<input type="text"  name="vipid"  class="form-control form-boxed"  value="{{response}}" readonly="readonly">
 					</div>
 			 </div>
 			<div class="form-group-col-2">
