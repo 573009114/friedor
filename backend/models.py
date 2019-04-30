@@ -46,5 +46,10 @@ class Stock(models.Model):
     class Meta():
         db_table= 'friedor_stocks'
 
+class Search(models.Model):
+    mobel=models.ForeignKey('Members')
+    class Meta():
+        db_table= 'friedor_search'
+
 
     
