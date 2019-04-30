@@ -4,6 +4,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import auth
 import random
+import time
 from backend import *
 from querydb import *
 
@@ -21,9 +22,12 @@ def member_creat(req):
     vipid=random.randint(100000000000000,999999999999999)
     
     if req.method == 'POST':
-        MemberForm(name=name,tel=tel,address=address,vipid=vipid).post_member()
-        msg=HttpResponse('<script type="text/javascript">alert("保存成功");location.href="/member/"</script>')
-        return msg    
+        if len(tel) >0 and len(name)>0:
+            MemberForm(name=name,tel=tel,address=address,vipid=vipid).post_member()
+            msg="保存成功"
+        else:
+            msg="姓名或者电话不能为空"
+        return HttpResponse('<script type="text/javascript">alert("%s");location.href="/member/"</script>' %msg)    
     return render(req,'backend/member-add.htm',{'response':vipid}) 
 
 def member_modify(req):
@@ -33,15 +37,21 @@ def member_modify(req):
 def member_delete(req):
     '''删除会员'''
     id=req.GET.get('id')
-    response=MemberForm(id=id).delete_member()
-    return HttpResponse('<script type="text/javascript">alert("记录删除成功");location.href="/member/"</script>')
+    try:
+        response=MemberForm(id=id).delete_member()
+        return HttpResponse("1")
+    except:
+        return HttpResponse("0")
 
 
 def income(req):
+    time=time.strftime("%Y-%m-%d", time.localtime())
     return render(req,'backend/income-list.htm')
 
 
 def income_creat(req):
+    '''初始化收入配置'''
+
     return render(req,'backend/income-add.htm')
 
 

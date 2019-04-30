@@ -1,25 +1,20 @@
 {% load staticfiles %}
 {% include "backend/header.htm" %}
-<div class="main-wrap">
-   
+<div class="main-wrap"> 
     {% include "backend/left-nav.htm" %} 
 	<div class="content-wrap">
 	    {% include "backend/top-header.htm" %} 
 		<main class="main-cont content mCustomScrollbar">
-		<div class="page-wrap">
-		
+		<div class="page-wrap"> 
 		<section class="page-hd">
 			<header>
 				<h2 class="title"><i class="icon-home"></i>会员记录</h2>
 			</header>
 			<hr>
-		</section>
-		
-		
+		</section> 
 			<table class="table table-bordered  mb-15 mt-15">
 			<thead>
-				<tr class="cen">
-				  
+				<tr class="cen"> 
 					<th>姓名</th>
 					<th>手机号</th>
 					<th>会员卡号</th>
@@ -34,9 +29,9 @@
 					<td> {{i.mobel}} </td>
 					<td> {{i.secret}} </td>
 					<td> {{i.address}} </td>
-					<td> 
-					   <a href="/member/edit?id={{i.id}}" title="编辑" class="mr-5">编辑</a> 
-					   <a href="/member/delete?id={{i.id}}" title="删除">删除</a> 
+					<td>  
+						<button id="{{i.id}}" class="btn btn-info">编辑</button> 	
+						<button id="{{i.id}}" onclick="a2(event)" class="btn btn-info">删除</button>
 					</td>
 				</tr> 
 				{%endfor%}
@@ -44,7 +39,34 @@
 			</table>
  
 	    </div>
-		</main>
-		{% include "backend/footer.htm" %}
- 
+		</main> 		
 		
+		<!--删除功能js-->
+		<script type="text/javascript">
+			//删除
+			function a2(e){
+				layer.confirm('确定要删除吗？', {
+				  btn: ['确定','取消'] //按钮
+				}, function(){
+				  var id = e.target.id ;					   
+				  
+                  $.ajax({
+				      url: "/member/delete?id="+id,
+					  type: "GET",
+					  success:function(res){
+					     if(res == '1'){ 
+							layer.msg('删除完成',{icon: 1});
+							setTimeout("window.location.reload()",500);
+							}else{
+							layer.msg('删除失败', {icon: 2});
+							} 
+					  },
+				  }); 
+				}, function(){
+				  layer.msg('取消操作', {
+					time: 500
+				  });
+				});
+			};
+		</script>  
+		{% include "backend/footer.htm" %}
