@@ -52,4 +52,46 @@ class Search(models.Model):
         db_table= 'friedor_search'
 
 
+class User(models.Model):
+    STATUS = (
+              (0,'超级管理员'),
+              (1,'普通用户'),             
+              )
+    ACTIVE = (
+              (0,'已激活'),
+              (1,'未激活')
+        )
+    username=models.CharField('用户名',max_length=50, default="")
+    password=models.CharField('密码',max_length=50,default="")
+    email=models.EmailField('邮箱',max_length=50)
+    is_superuser=models.IntegerField(choices=STATUS,default='')
+    is_active=models.IntegerField(choices=ACTIVE,default='')
+    class Meta():
+        db_table= 'friedor_user'
+
+class Role(models.Model):
+    role_name=models.CharField('角色名',max_length=50, default="")
+    class Meta():
+        db_table= 'friedor_role'
+
+class Menu(models.Model):
+    menu_name=models.CharField('权限菜单名',max_length=50, default="")
+    main_id=models.IntegerField('父级ID',max_length=5)
+    main_url=models.CharField('连接路径',max_length=50, default="")
+    class Meta():
+        db_table= 'friedor_menu'
+
+class UserRole(models.Model): 
+    user_id=models.ForeignKey('User')
+    role_id=models.ForeignKey('Role')
+    class Meta():
+        db_table= 'friedor_userrole'
+
+class UserMenu(models.Model): 
+    user_id=models.ForeignKey('User')
+    main_id=models.ForeignKey('Menu')
+    menudom=models.IntegerField(max_length=5)
+    class Meta():
+        db_table= 'friedor_usermenu'
+
     
